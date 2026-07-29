@@ -3,9 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Carbon Footprint Calculator</title>
+
+<title>Energy Cost Calculator</title>
 
 <style>
+
 *{
     margin:0;
     padding:0;
@@ -22,71 +24,114 @@ body{
     padding:30px;
 }
 
+
 .container{
+
     width:100%;
     max-width:750px;
-    background:#ffffff;
+    background:white;
     padding:35px;
     border-radius:20px;
     box-shadow:0 10px 30px rgba(0,0,0,0.12);
+
 }
 
+
 h2{
+
     text-align:center;
     color:#1b5e20;
     font-size:32px;
     margin-bottom:10px;
+
 }
 
+
 .subtitle{
+
     text-align:center;
     color:#666;
     margin-bottom:25px;
+
 }
 
+
 label{
+
     display:block;
     margin-top:18px;
     margin-bottom:8px;
     font-size:16px;
     font-weight:600;
     color:#333;
+
 }
 
-input,
-select{
+
+input{
+
     width:100%;
     padding:14px;
     border:2px solid #d7e7db;
     border-radius:12px;
     font-size:16px;
     background:#fafafa;
-    transition:0.3s;
+
 }
 
-input:focus,
-select:focus{
+
+input:focus{
+
     outline:none;
     border-color:#2e7d32;
     box-shadow:0 0 0 4px rgba(46,125,50,0.15);
+
 }
 
-.row{
+
+
+.input-group{
+
     display:flex;
-    gap:15px;
+    gap:10px;
+
 }
 
-.row>*{
+
+.input-group input{
+
     flex:1;
+
 }
+
+
+.unit{
+
+    width:130px;
+    background:#e8f5e9;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    border-radius:12px;
+    font-weight:bold;
+    color:#2e7d32;
+
+}
+
+
 
 .button-group{
+
     margin-top:25px;
     display:flex;
     gap:10px;
+
 }
 
+
+
 .btn{
+
     flex:1;
     padding:14px;
     border:none;
@@ -95,187 +140,332 @@ select:focus{
     font-size:16px;
     font-weight:600;
     cursor:pointer;
-    transition:0.3s;
+
 }
+
 
 .calculate{
+
     background:linear-gradient(135deg,#2e7d32,#43a047);
+
 }
+
 
 .calculate:hover{
+
     transform:translateY(-2px);
-    box-shadow:0 6px 15px rgba(46,125,50,.3);
+
 }
+
 
 .clear{
+
     background:#757575;
+
 }
+
 
 .clear:hover{
+
     background:#616161;
+
 }
 
+
+
 .result{
+
     margin-top:25px;
     background:#f1f8f2;
     border-left:6px solid #2e7d32;
     padding:20px;
     border-radius:15px;
     display:none;
+
 }
+
+
 
 .result h3{
+
     color:#1b5e20;
     margin-bottom:15px;
+
 }
 
+
+
 .result-item{
+
     display:flex;
     justify-content:space-between;
     padding:12px 0;
     border-bottom:1px solid #dfe8e0;
+
 }
+
 
 .result-item:last-child{
+
     border-bottom:none;
+
 }
+
 
 .value{
+
     font-weight:bold;
     color:#2e7d32;
+
 }
 
+
+
 .note{
+
     margin-top:15px;
     font-size:14px;
     color:#666;
+
 }
+
+
 
 @media(max-width:600px){
 
-    .row{
+    .input-group{
+
         flex-direction:column;
+
     }
+
+    .unit{
+
+        width:100%;
+        height:45px;
+
+    }
+
 
     .button-group{
+
         flex-direction:column;
+
     }
 
+
     h2{
+
         font-size:26px;
+
     }
+
 }
+
 </style>
+
 </head>
+
+
 <body>
+
 
 <div class="container">
 
-    <h2>🌱 Carbon Footprint Calculator</h2>
-    <p class="subtitle">
-        Estimate your electricity usage, cost, and carbon emissions.
-    </p>
 
-    <label>Typical Appliance</label>
-    <select>
-        <option>Define your own</option>
-        <option>Air Conditioner</option>
-        <option>Electric Fan</option>
-        <option>Refrigerator</option>
-        <option>Television</option>
-        <option>Washing Machine</option>
-        <option>Computer</option>
-    </select>
+<h2>⚡ Energy Cost Calculator</h2>
 
-    <label>Appliance Power</label>
-    <div class="row">
-        <input type="number" id="power" value="1000">
-        <select>
-            <option>Watt [W]</option>
-        </select>
-    </div>
+<p class="subtitle">
+Estimate your appliance electricity usage and cost.
+</p>
 
-    <label>Run At (%) Capacity</label>
-    <input type="number" id="capacity" value="100">
 
-    <label>Usage</label>
-    <div class="row">
-        <input type="number" id="hours" value="24">
-        <select>
-            <option>Hours Per Day</option>
-        </select>
-    </div>
 
-    <label>Electricity Price (₱ per kWh)</label>
-    <input type="number" id="price" value="12">
+<label>Appliance Type</label>
 
-    <div class="button-group">
-        <button class="btn calculate" onclick="calculate()">
-            Calculate
-        </button>
+<input type="text" id="appliance" placeholder="Example: Air Conditioner">
 
-        <button class="btn clear" onclick="clearFields()">
-            Clear
-        </button>
-    </div>
 
-    <div class="result" id="result"></div>
+
+<label>Appliance Power</label>
+
+<div class="input-group">
+
+<input type="number" id="power" placeholder="Example: 1000">
+
+<div class="unit">
+Watt (W)
+</div>
 
 </div>
 
+
+
+
+<label>Usage</label>
+
+<div class="input-group">
+
+<input type="number" id="hours" placeholder="Example: 8">
+
+<div class="unit">
+Hours / Day
+</div>
+
+</div>
+
+
+
+
+<label>Electricity Price</label>
+
+<div class="input-group">
+
+<input type="number" id="price" value="12">
+
+<div class="unit">
+₱ / kWh
+</div>
+
+</div>
+
+
+
+
+
+<div class="button-group">
+
+<button class="btn calculate" onclick="calculate()">
+Calculate
+</button>
+
+
+<button class="btn clear" onclick="clearFields()">
+Clear
+</button>
+
+
+</div>
+
+
+
+
+
+<div class="result" id="result"></div>
+
+
+
+</div>
+
+
+
+
+
 <script>
+
 
 function calculate(){
 
-    let power = parseFloat(document.getElementById('power').value) || 0;
-    let cap = parseFloat(document.getElementById('capacity').value) || 0;
-    let hours = parseFloat(document.getElementById('hours').value) || 0;
-    let price = parseFloat(document.getElementById('price').value) || 0;
 
-    let kwh = (power * (cap / 100) * hours) / 1000;
+let appliance = document.getElementById("appliance").value;
 
-    let cost = kwh * price;
+let power = parseFloat(document.getElementById("power").value) || 0;
 
-    let carbon = kwh * 0.417;
+let hours = parseFloat(document.getElementById("hours").value) || 0;
 
-    document.getElementById('result').style.display = 'block';
+let price = parseFloat(document.getElementById("price").value) || 0;
 
-    document.getElementById('result').innerHTML = `
-        <h3>🌍 Results</h3>
 
-        <div class="result-item">
-            <span>⚡ Daily Energy Use</span>
-            <span class="value">${kwh.toFixed(2)} kWh</span>
-        </div>
 
-        <div class="result-item">
-            <span>💰 Daily Cost</span>
-            <span class="value">₱${cost.toFixed(2)}</span>
-        </div>
+// Convert watts to kilowatt-hour
 
-        <div class="result-item">
-            <span>🌱 Carbon Emissions</span>
-            <span class="value">${carbon.toFixed(2)} kg CO₂</span>
-        </div>
+let kwh = (power * hours) / 1000;
 
-        <p class="note">
-            Carbon emissions are estimated using an average emission factor of
-            0.417 kg CO₂ per kWh.
-        </p>
-    `;
+
+
+// Calculate electricity cost
+
+let cost = kwh * price;
+
+
+
+document.getElementById("result").style.display="block";
+
+
+
+document.getElementById("result").innerHTML = `
+
+
+<h3>📊 Results</h3>
+
+
+
+<div class="result-item">
+
+<span>🔌 Appliance</span>
+
+<span class="value">${appliance || "Unknown"}</span>
+
+</div>
+
+
+
+<div class="result-item">
+
+<span>⚡ Daily Energy Usage</span>
+
+<span class="value">${kwh.toFixed(2)} kWh</span>
+
+</div>
+
+
+
+<div class="result-item">
+
+<span>💰 Daily Electricity Cost</span>
+
+<span class="value">₱${cost.toFixed(2)}</span>
+
+</div>
+
+
+
+<p class="note">
+
+Calculation is based on appliance wattage, hours of usage per day, and electricity price.
+
+</p>
+
+
+
+`;
+
 }
+
+
+
+
 
 function clearFields(){
 
-    document.getElementById('power').value = "1000";
-    document.getElementById('capacity').value = "100";
-    document.getElementById('hours').value = "24";
-    document.getElementById('price').value = "12";
 
-    document.getElementById('result').style.display = "none";
+document.getElementById("appliance").value="";
+
+document.getElementById("power").value="";
+
+document.getElementById("hours").value="";
+
+document.getElementById("price").value="12";
+
+
+document.getElementById("result").style.display="none";
+
+
 }
 
+
 </script>
+
 
 </body>
 </html>
